@@ -660,6 +660,12 @@ void TFT_eSprite::pushSprite(int32_t x, int32_t y)
 {
   if (!_created) return;
 
+  if (_vpDatum)
+  {
+    pushSprite(x, y, _vpX, _vpY, _xWidth, _yHeight);
+    return;
+  }
+
   if (_bpp == 16)
   {
     bool oldSwapBytes = _tft->getSwapBytes();
